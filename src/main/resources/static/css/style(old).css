@@ -1,0 +1,156 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Шапка */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    float: left;
+}
+
+nav ul {
+    list-style: none;
+    float: right;
+    margin-top: 5px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn {
+    margin-left: 20px;
+}
+
+/* Главная секция */
+#home {
+    padding: 100px 0;
+}
+
+.background-image {
+    /* Стили для фотографии на фоне */
+    width: 100%;
+    height: 400px; /* Измените высоту по вашему усмотрению */
+    /*background: url('background.jpg') center/cover no-repeat; !* Подставьте реальный путь к изображению *!*/
+}
+
+/* О нас */
+#about {
+    background-color: #f4f4f4;
+    padding: 100px 0;
+}
+
+/* Проекты */
+#projects {
+    padding: 100px 0;
+}
+
+/* Контакты */
+#contacts {
+    background-color: #333;
+    color: white;
+    padding: 100px 0;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+/* Футер */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+/* Модальное окно для формы */
+.modal-body input,
+.modal-body textarea {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Дополнительные стили для модального окна */
+.modal-content {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.modal-body {
+    text-align: left;
+}
+
+.modal-body input,
+.modal-body textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.modal-body label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.modal-body .form-group {
+    margin-bottom: 20px;
+}
+
+.modal-body .btn {
+    margin-right: 10px;
+}
+
+/* Дополнительные стили для кнопки "Отправить заявку" */
+.btn-send {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Дополнительные стили для кнопки "Закрыть окно" */
+.btn-close {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Дополнительные стили для центрирования элементов в contact-info */
+.contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.contact-info p {
+    margin: 0 20px; /* Расстояние между элементами */
+}

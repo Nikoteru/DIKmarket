@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Query</title>
+    <link rel="shortcut icon" href="/img/logo_refhouse%20(5).png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">New Query</h1>
+    <form th:action="@{/newQuery}" method="post" id="queryForm">
+        <div class="mb-3">
+            <label for="queryName" class="form-label">Название отчета:</label>
+            <input type="text" name="queryName" id="queryName" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+            <label for="queryComment" class="form-label">Комментарий:</label>
+            <input type="text" name="queryComment" id="queryComment" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="queryScript" class="form-label">Скрипт:</label>
+            <textarea name="queryScript" id="queryScript" class="form-control" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить отчет</button>
+    </form>
+    <hr/>
+    <a th:href="@{/Admin.html}" class="btn btn-secondary">Назад</a>
+</div>
+
+<!-- Bootstrap JS (необходим для работы некоторых компонентов Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

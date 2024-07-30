@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Info</title>
+    <link rel="shortcut icon" href="/img/logo_refhouse%20(5).png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">New Info</h1>
+    <form th:action="@{/newInfo}" method="post" id="infoForm" enctype="multipart/form-data" th:object="${infos}">
+        <div class="mb-3">
+            <label for="infoName" class="form-label">Название:</label>
+            <input type="text" th:field="*{infoName}" class="form-control" id="infoName" required/>
+        </div>
+        <div class="mb-3">
+            <label for="infoText" class="form-label">Описание:</label>
+            <textarea th:field="*{infoText}" class="form-control" id="infoText" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="imageFile" class="form-label">Изображение:</label>
+            <input type="file" name="imageFile" id="imageFile" class="form-control" accept="image/*" />
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить описание</button>
+    </form>
+    <hr/>
+    <a th:href="@{/Admin.html}" class="btn btn-secondary">Назад</a>
+</div>
+
+<!-- Bootstrap JS (необходим для работы некоторых компонентов Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

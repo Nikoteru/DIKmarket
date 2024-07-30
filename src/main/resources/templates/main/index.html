@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Refhouse</title>
+  <link rel="shortcut icon" href="/img/logo_refhouse%20(5).png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Untree.co" />
+  <link rel="stylesheet" href="https://referencehouse.ru/fonts/icomoon/style.css" />
+  <link rel="stylesheet" href="https://referencehouse.ru/css/style.css" />
+  <link rel="stylesheet" href="https://referencehouse.ru/css/themify-icons.css" />
+  <link rel="stylesheet" href="https://referencehouse.ru/css/owl.carousel.min_1.css" />
+  <link rel="stylesheet" href="https://referencehouse.ru/css/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="https://referencehouse.ru/css/style_1.css" />
+  <link rel="stylesheet" href="https://referencehouse.ru/css/aos.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://referencehouse.ru/js/scripts.js"></script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #myImg {
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #myImg:hover {
+      opacity: 0.7;
+    }
+    /* Модальный (фон) */
+    .modal {
+      display: none; /* Скрыто по умолчанию */
+      position: fixed; /* Оставаться на месте */
+      z-index: 9999; /* Сидеть на вершине */
+      padding-top: 100px; /* Расположение коробки */
+      left: 0;
+      top: 0;
+      width: 100%; /* Полная ширина */
+      height: 100%; /* Полная высота */
+      overflow: auto; /* Включите прокрутку, если это необходимо */
+      background-color: rgb(0, 0, 0); /* Цвет запасной вариант  */
+      background-color: rgba(0, 0, 0, 0.7); /*Черный с непрозрачностью */
+    }
+    /*Модальное содержание (изображение) */
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 900px;
+    }
+    /* Заголовок модального изображения */
+    #caption {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+      text-align: center;
+      color: #ccc;
+      padding: 10px 0;
+      height: 150px;
+    }
+    /* Добавить анимацию */
+    .modal-content,
+    #caption {
+      -webkit-animation-name: zoom;
+      -webkit-animation-duration: 0.6s;
+      animation-name: zoom;
+      animation-duration: 0.6s;
+    }
+    @-webkit-keyframes zoom {
+      from {
+        -webkit-transform: scale(0);
+      }
+      to {
+        -webkit-transform: scale(1);
+      }
+    }
+    @keyframes zoom {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+    /* Кнопка закрытия */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /* 100% Ширина изображения на меньших экранах */
+    @media only screen and (max-width: 700px) {
+      .modal-content {
+        width: 100%;
+      }
+    }
+  </style>
+  <style>
+    /* Общие стили для стрелок */
+    .owl-prev svg, .owl-next svg {
+      width: 58px; /* Увеличенный размер SVG */
+      height: 58px;
+      fill: #d7ff6a; /* Цвет SVG */
+      stroke: #d7ff6a; /* Цвет обводки */
+      stroke-width: 1; /* Толщина обводки */
+      transition: transform 0.3s; /* Плавная анимация */
+    }
+
+    /* Стили для стрелок верхней карусели (с тенью) */
+    .owl-carousel-fullwidth .owl-prev svg, .owl-carousel-fullwidth .owl-next svg {
+      filter: drop-shadow(5px 7px 8px rgba(0, 0, 0, 1)); /* Тень */
+    }
+
+    /* Анимация при наведении для стрелок верхней карусели */
+    .owl-carousel-fullwidth .owl-prev:hover svg, .owl-carousel-fullwidth .owl-next:hover svg {
+      transform: scale(1.2);
+      filter: drop-shadow(5px 7px 10px rgba(0, 0, 0, 1)); /* Усиление тени при наведении */
+    }
+
+    /* Стили для стрелок нижней карусели (без тени) */
+    .owl-carousel-carousel .owl-prev svg, .owl-carousel-carousel .owl-next svg {
+      /* Убираем тень */
+    }
+
+    /* Анимация при наведении для стрелок нижней карусели */
+    .owl-carousel-carousel .owl-prev:hover svg, .owl-carousel-carousel .owl-next:hover svg {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+<nav class="site-nav">
+  <div class="container">
+    <div class="menu-bg-wrap">
+      <div class="site-navigation">
+
+        <img class="logo_img" src="https://referencehouse.ru/img/logo_refhouse%20(3).png">
+        <ul
+                class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+        >
+          <li><a href="#home" style="font-family:'TT Interfaces', sans-serif; font-weight: 400">Главная</a></li>
+          <li><a href="#about" style="font-family:'TT Interfaces', sans-serif; font-weight: 400">О нас</a></li>
+          <li><a href="#projects" style="font-family:'TT Interfaces', sans-serif; font-weight: 400">Проекты</a></li>
+          <li><a href="#contacts" style="font-family:'TT Interfaces', sans-serif; font-weight: 400">Контакты</a></li>
+        </ul>
+        <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!--Главная-->
+<div class="hero page-inner overlay">
+  <img src="https://referencehouse.ru/img/zastavka-new.jpg" alt="Background Image" class="background-img">
+  <div id="home" class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <div class="img-text_1">
+          <p class="s123">
+            <span class="s1">Решим все вопросы по ипотеке за вас. Минимальная процентная ставка: 5%</span>
+            <br>
+            <span class="s2">Строительство домов под ключ <br> в Москве и Московской области</span>
+            <br>
+            <span class="s3">*Ипотека - государственные программы поддержки семей с детьми и работников в сфере IT.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<!--    О Нас-->
+<div id="about"  class="owl-carousel owl-carousel-fullwidth" >
+  <div th:each="info, iterStat : ${infoList}" th:classappend="${iterStat.index == 0} ? 'active' : ''" class="item">
+    <a href="#">
+      <h2 class="text_123">О НАС</h2>
+      <img th:src="@{'/getImage/' + ${info.id}}" alt="Info Image"/>
+      <div class="img-text">
+        <p th:utext="${info.infoName}"></p>
+        <p th:utext="${info.infoText}"></p>
+      </div>
+    </a>
+  </div>
+</div>
+<!--Проекты-->
+<div class="block123">
+  <div id="projects" class="container">
+    <div class="row">
+      <div class="col-lg-6 text-center mx-auto">
+        <h2 class="text_1234">НАШИ ПРОЕКТЫ</h2>
+      </div>
+    </div>
+    <div class="gtco-section">
+      <div class="owl-carousel owl-carousel-carousel custom-carousel">
+        <div th:each="project, projIndex : ${projectList}" th:classappend="${projIndex.index == 0} ? 'active' : ''" class="container-fullwidth">
+          <div class="block1">
+            <div class="image-container1">
+              <div class="owl-carousel-fullwidth_1">
+                <div th:if="${image.isTitle}" th:each="image, imaIndex : ${project.images}" class="item_1">
+                  <img th:src="@{'/getProjectImage/' + ${image.id}}"
+                       th:attr="data-img-context=${image.imgContextName}, data-img-info=${image.ingInfo}"
+                       class="img_block zoomable-image"
+                       th:alt="${'Проект ' + (projIndex.index + 1) + ' - Изображение ' + (imaIndex.index + 1)}"
+                       onclick="openModal(this)">
+                </div>
+              </div>
+              <div id="myModal" class="modal" onclick="closeModal()">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="img01" />
+                <div id="caption"></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="h3sela" th:text="${project.projectName}"></h3>
+          <p th:utext="${project.projectPrice}"></p>
+          <div class="btn-cont">
+            <a href="#" class="btn btn-primary-2 py-2 px-3 btn-order-project" data-toggle="modal" data-target="#formModal" th:attr="data-project-id=${project.id}" style="font-family:'TT Interfaces', sans-serif;">Заказать</a>
+            <a th:href="@{/showproject/{id}(id=${project.getId()})}" class="btn btn-primary-1 py-2 px-3" style="font-family:'TT Interfaces', sans-serif;">Подробно</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="form_btn" data-toggle="modal" data-target="#formModal">
+  <img class="form_img" src="https://referencehouse.ru/img/Форма%20белая%20(3).png" alt="" />
+</button>
+<button class="form_btn2" data-toggle="modal" data-target="#formModal2">
+  <img class="form_img" src="https://referencehouse.ru/img/icons8-оценить-50.png" alt="" />
+</button>
+<div id="contacts" class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="widget">
+          <img class="img_footer" src="https://referencehouse.ru/img/logo2%20(5).png">
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Contact</h3>
+          <address>Московская область Богородский городской округ г. Ногинск ул. Площадь Ленина стр. 11</address>
+          <ul class="list-unstyled links">
+            <li><a href="tel://79163433568">+7(916) 343-35-68</a></li>
+            <li><a href="mailto:ref.house@yandex.ru">ref.house@yandex.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Links</h3>
+          <ul class="list-unstyled social">
+            <li>
+              <a href="https://t.me/+1wYX8rCCB2g5ODQy" class="telegram-icon">
+                <img class="telegram-icon2" src="https://referencehouse.ru/img/Telegramm%20ver1.png" alt="Telegram">
+              </a>
+            </li>
+            <br>
+            <li>
+              <a href="https://wa.me/qr/HY5HY6XOBBXPD1" class="whatsapp-icon">
+                <img class="whatsapp-icon2" src="https://referencehouse.ru/img/WhatsApp%20ver1.png" alt="WhatsApp">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="overlayer"></div>
+<div class="loader">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<!-- Модальное окно для формы -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalLabel">Форма заявки</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="requestForm" th:action="@{/index}" th:object="${form}" method="post">
+          <!-- Ваши поля формы -->
+          <div class="form-group">
+            <label for="project"></label>
+            <input hidden="hidden" type="text" class="form-control phone-input" name="project" id="project" th:field="*{project}">
+          </div>
+          <div class="form-group">
+            <label for="fullName">ФИО:</label>
+            <input type="text" class="form-control" id="fullName" th:field="*{userFIO}" required>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Номер телефона:</label>
+            <input type="tel" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Почта:</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}" required>
+          </div>
+          <div class="form-group">
+            <label for="region.id">Выберите регион:</label>
+            <select th:field="*{region.id}" class="form-control" id="region.id">
+              <option value="" th:text="'- Пусто -'"></option>
+              <option th:each="regions : ${region}" th:value="${regions.id}" th:text="${regions.regionName}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="comment">Комментарий:</label>
+            <textarea class="form-control" id="comment" th:field="*{userComment}" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-send">Отправить заявку</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="formModal2" tabindex="-1" role="dialog" aria-labelledby="formModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalLabel2">Расчет стоимости</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/saveCalc}" th:object="${form}" id="requestForm2" method="post">
+          <div class="form-group">
+            <label for="userFIO">ФИО:</label>
+            <input type="text" class="form-control" id="userFIO" th:field="*{userFIO}" required>
+          </div>
+          <div class="form-group">
+            <label for="phoneNum">Номер телефона:</label>
+            <input type="tel" class="form-control phone-input" id="phoneNum" th:field="*{phoneNumber}" required>
+          </div>
+          <div class="form-group">
+            <label for="mail">Почта:</label>
+            <input type="email" class="form-control" id="mail" th:field="*{email}">
+          </div>
+          <div class="form-group">
+            <label for="region">Выберите регион:</label>
+            <select th:field="*{region.id}" class="form-control" id="region">
+              <option value="" th:text="'- Пусто -'"></option>
+              <option th:each="regions : ${region}" th:value="${regions.id}" th:text="${regions.regionName}" required></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="stage.id">Количество этажей:</label>
+            <select class="form-control slct_inp" id="stage.id" th:field="*{calculator.stage.id}" required>
+              <option value="">- Пусто -</option>
+              <option th:each="stage : ${stages}" th:value="${stage.id}" th:text="${stage.stageName}" th:attr="data-kef=${stage.stageKEF}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="basement.id">Тип фундамента:</label>
+            <select class="form-control slct_inp" id="basement.id" th:field="*{calculator.basementType.id}" required>
+              <option value="">- Пусто -</option>
+              <option th:each="basementType : ${basementTypes}" th:value="${basementType.id}" th:text="${basementType.basementName}" th:attr="data-kef=${basementType.basementKEF}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="overlay.id">Тип перекрытий:</label>
+            <select class="form-control slct_inp" id="overlay.id" th:field="*{calculator.overlayType.id}" required>
+              <option value="">- Пусто -</option>
+              <option th:each="overlayType : ${overlayTypes}" th:value="${overlayType.id}" th:text="${overlayType.overlayName}" th:attr="data-kef=${overlayType.overlayKEF}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="roof.id">Тип крыши:</label>
+            <select class="form-control slct_inp" id="roof.id" th:field="*{calculator.roofType.id}" required>
+              <option value="">- Пусто -</option>
+              <option th:each="roofType : ${roofTypes}" th:value="${roofType.id}" th:text="${roofType.roofName}" th:attr="data-kef=${roofType.roofKEF}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="material.id">Материал короба:</label>
+            <select class="form-control slct_inp" id="material.id" th:field="*{calculator.materialType.id}" required>
+              <option value="">- Пусто -</option>
+              <option th:each="materialType : ${materialTypes}" th:value="${materialType.id}" th:text="${materialType.materialName}" th:attr="data-kef=${materialType.materialKEF}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="projectWidth">Ширина:</label>
+            <input type="number" class="form-control chng_inp" id="projectWidth" th:field="*{calculator.projectWidth}" required>
+          </div>
+          <div class="form-group">
+            <label for="projectLength">Длина:</label>
+            <input type="number" class="form-control chng_inp" id="projectLength" th:field="*{calculator.projectLength}" required>
+          </div>
+          <div class="form-group">
+            <label for="totalCost">Стоимость проекта:</label>
+            <input type="number" class="form-control" id="totalCost" th:field="*{calculator.totalCost}" step="0.01" readonly>
+          </div>
+          <div class="form-group">
+            <label for="totalArea">Площадь проекта:</label>
+            <input type="number" class="form-control" id="totalArea" th:field="*{calculator.totalArea}" step="0.01" readonly>
+          </div>
+          <div class="form-group">
+            <label for="mCost">Стоимость погонного метра:</label>
+            <input type="number" class="form-control" id="mCost" th:field="*{calculator.mmCost}" step="0.01" readonly>
+          </div>
+          <button type="submit" class="btn btn-primary btn-send">Отправить заявку</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Добавьте в ваш шаблон index.html  -->
+<div th:if="${successMessage}" class="alert alert-success">
+  <p th:text="${successMessage}"></p>
+</div>
+<script src="https://referencehouse.ru/js/jquery.min.js"></script>
+<script src="https://referencehouse.ru/js/owl.carousel.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://referencehouse.ru/js/aos.js"></script>
+<script src="https://referencehouse.ru/js/custom.js"></script>
+<script src="https://referencehouse.ru/js/jquery.min.js"></script>
+<script src="https://referencehouse.ru/js/owl.carousel.min.js"></script>
+<script src="https://referencehouse.ru/js/main.js"></script>
+<script src="https://referencehouse.ru/js/calculator.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    var closeSpan = document.getElementsByClassName("close")[0];
+    closeSpan.onclick = function () {
+      modal.style.display = "none";
+    };
+    function closeModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+    // Получаем все элементы с классом top-image в карусели
+    const topImages = document.querySelectorAll(
+            ".owl-carousel-fullwidth_1 .top-image"
+    );
+
+    topImages.forEach(function (img) {
+      img.addEventListener("click", function () {
+        // Находим соответствующее изображение zoomable-image в том же контейнере item_1
+        const zoomableImage = img
+                .closest(".item_1")
+                .querySelector(".zoomable-image");
+
+        modal.style.display = "block";
+        modalImg.src = zoomableImage.src; // Устанавливаем источник изображения zoomable-image
+        captionText.innerHTML = zoomableImage.alt; // Устанавливаем текст атрибута alt из zoomable-image
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $('#region\\.id').select2({
+      placeholder: "- Пусто -", // Замени на свой текст по умолчанию
+      allowClear: true // Разрешить очистку выбора
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.btn-order-project').forEach(button => {
+      button.addEventListener('click', function() {
+        const projtId = this.getAttribute('data-project-id');
+        document.getElementById('project').value = projtId;
+        console.log('ИД Проекта:' + projtId);
+      });
+    });
+  });
+</script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+  var modal = document.getElementById("myModal");
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+  var closeSpan = document.getElementsByClassName("close")[0];
+
+  // Перенос функции closeModal в глобальную область видимости
+  window.closeModal = function() {
+    modal.style.display = "none";
+  };
+
+  closeSpan.onclick = function () {
+    closeModal(); // Используем глобальную функцию closeModal
+  };
+
+  // Обработчик для изображений в блоке #projects
+  const projectImages = document.querySelectorAll("#projects .zoomable-image");
+  addZoomEffect(projectImages);
+
+  // Обработчик для изображений в блоке .gtco-section
+  const carouselImages = document.querySelectorAll(".gtco-section .zoomable-image");
+  addZoomEffect(carouselImages);
+
+  function addZoomEffect(images) {
+    images.forEach(function (img) {
+      img.addEventListener("mouseenter", function () {
+        img.style.transform = "scale(1.2)";
+        img.style.transition = "transform 0.5s ease"; // Добавляем плавность изменения
+      });
+
+      img.addEventListener("mouseleave", function () {
+        img.style.transform = "scale(1)";
+      });
+
+      img.addEventListener("click", function () {
+        modal.style.display = "block";
+        modalImg.src = this.src; // Устанавливаем источник изображения из текущего элемента
+        captionText.innerHTML = this.alt; // Устанавливаем описание из атрибута alt текущего изображения
+      });
+    });
+  }
+});
+</script>
+</body>
+</html>
