@@ -1,7 +1,7 @@
 package com.PRY.DIKmarket.Security;
 
-import com.PRY.buldHOUSE.models.AdminPassword;
-import com.PRY.buldHOUSE.repositoryes.AdminPasswordRepository;
+import com.PRY.DIKmarket.Models.AdminPassword;
+import com.PRY.DIKmarket.Repositoryes.AdminPasswordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

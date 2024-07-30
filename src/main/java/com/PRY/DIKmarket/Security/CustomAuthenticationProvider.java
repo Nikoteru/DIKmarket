@@ -1,7 +1,7 @@
 package com.PRY.DIKmarket.Security;
 
-import com.PRY.buldHOUSE.models.AdminPassword;
-import com.PRY.buldHOUSE.repositoryes.AdminPasswordRepository;
+import com.PRY.DIKmarket.Models.AdminPassword;
+import com.PRY.DIKmarket.Repositoryes.AdminPasswordRepository;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

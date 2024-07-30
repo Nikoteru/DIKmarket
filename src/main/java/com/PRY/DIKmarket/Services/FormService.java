@@ -1,8 +1,7 @@
 package com.PRY.DIKmarket.Services;
 
-import com.PRY.buldHOUSE.models.*;
-import com.PRY.buldHOUSE.repositoryes.FormRepository;
-import com.PRY.buldHOUSE.repositoryes.ProjectRepository;
+import com.PRY.DIKmarket.Models.*;
+import com.PRY.DIKmarket.Repositoryes.FormRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +17,17 @@ import java.util.Optional;
 public class FormService {
 
     private final FormRepository formRepository;
-    private final ProjectRepository projectRepository;
+
     private static final Logger logger = LoggerFactory.getLogger(FormService.class);
 
     @Autowired
-    public FormService(FormRepository formRepository, ProjectRepository projectRepository) {
+    public FormService(FormRepository formRepository) {
         this.formRepository = formRepository;
-        this.projectRepository = projectRepository;
     }
 
     public void saveForm(Form form) {
 
-        if (form.getProject() == null) {
-            // Если проект не выбран, можно установить специальное значение или оставить проект пустым
-            // В данном примере я устанавливаю null
-            form.setProject(null);
-        }
+
 
         formRepository.save(form);
         logger.info("Форма успешно сохранена: {}", form);
@@ -59,10 +53,6 @@ public class FormService {
         if (existingForm != null) {
             Status status = form.getStatus();
             Region region = form.getRegion();
-            Project project = form.getProject();
-            if (project!= null && project.getId()==null) {
-                project = null;
-            }
             if (status != null && status.getId()==null) {
                 status = null;
             }
@@ -71,7 +61,6 @@ public class FormService {
             }
             existingForm.setStatus(status);
             existingForm.setRegion(region);
-            existingForm.setProject(project);
             existingForm.setUserFIO(form.getUserFIO());
             existingForm.setPhoneNumber(form.getPhoneNumber());
             existingForm.setEmail(form.getEmail());
